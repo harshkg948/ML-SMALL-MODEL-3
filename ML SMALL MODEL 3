@@ -1,0 +1,18 @@
+import pandas as pd
+import numpy as np
+df = pd.read_csv('AI_Impact_on_Jobs_2030.csv')
+X = df[['Average_Salary','Years_Experience','AI_Exposure_Index','Tech_Growth_Factor']]
+y = df['Risk_Category']
+from sklearn.neighbors import KNeighborsClassifier
+kn = KNeighborsClassifier(n_neighbors=3)
+kn.fit(X,y)
+a = float(input("enter the average salary: "))
+b = float(input("enter the years experience: "))
+c = float(input("enter the ai exposure index: "))
+d = float(input("enter the tech growth factor: "))
+answer = kn.predict([[a,b,c,d]])[0]
+print(f"average salary : {a}")
+print(f"years experience : {b}")
+print(f"ai exposure index: {c}")
+print(f"tech growth factor: {d}")
+print(f"your risk is likely to be {answer}")
